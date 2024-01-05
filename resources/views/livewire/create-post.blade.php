@@ -29,10 +29,10 @@
             <x-input-error :messages="$errors->get('image')"/>
         </div>
 
-        <div>
+        <div class="my-5 w-72">
             @if($image)
                 Image:
-                <img src="{{ $image->temporaryUrl() }}" alt="">
+                <img src="{{ $image->temporaryUrl() }}" class="rounded-lg" alt="">
             @endif
         </div>
 
