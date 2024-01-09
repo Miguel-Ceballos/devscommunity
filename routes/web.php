@@ -26,6 +26,7 @@ Route::get('/dashboard', function () {
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/edit/{post}', [PostController::class, 'edit'])->name('posts.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
