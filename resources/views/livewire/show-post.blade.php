@@ -27,7 +27,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('posts.edit', $post)">
                             {{ __('Edit') }}
                         </x-dropdown-link>
                         <button wire:click="deletePost({{ $post->id }})"
