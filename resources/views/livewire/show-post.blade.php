@@ -63,7 +63,18 @@
     @auth
         <livewire:comment-post :post="$post"/>
     @else
-        <a href="{{ route('register') }}" class="text-sm text-gray-700 text-center">Register to add a comment.</a>
+        <div class="text-center text-md text-gray-600 my-2">
+            <p class="">
+                <a href="{{ route('register') }}" class="text-blue-500 font-bold hover:text-blue-700 hover:underline">
+                    Register
+                </a>
+                or
+                <a href="{{ route('login') }}" class="text-blue-500 font-bold hover:text-blue-700 hover:underline">
+                    log in
+                </a>
+                to add a comment
+            </p>
+        </div>
     @endauth
 
     <div class="px-4 md:px-8 pb-8">
