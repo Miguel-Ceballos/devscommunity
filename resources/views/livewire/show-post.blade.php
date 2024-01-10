@@ -61,26 +61,35 @@
         </div>
     </div>
     @auth
-        <div class="px-4 py-6 border-t border-gray-200">
-            <div class="flex gap-1 md:p-8">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                         stroke-width="1.5" stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                    </svg>
-                </div>
-                <div class="w-full">
-                    <x-text-area class="w-full" rows="4" placeholder="Add a comment"/>
-                </div>
-            </div>
-            <div class="flex flex-row-reverse my-2">
-                <x-primary-button>
-                    {{ __('Submit') }}
-                </x-primary-button>
-            </div>
-        </div>
+        <livewire:comment-post :post="$post"/>
     @else
         <a href="{{ route('register') }}" class="text-sm text-gray-700 text-center">Register to add a comment.</a>
     @endauth
+
+    <div class="px-4 md:px-8 pb-8">
+        <h2 class="text-2xl font-black mb-4">Comments</h2>
+        @forelse($post->comments as $comment)
+            <div class="mb-4">
+                <div class="flex gap-1">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke-width="1.5" stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                        </svg>
+                    </div>
+                    <div class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                        <div class="flex gap-2 items-center">
+                            <p class="text-md text-gray-700 font-bold">{{ $post->user->name }}</p>
+                            <p class="font-bold text-2xl text-gray-500">·</p>
+                            <p class="text-xs text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
+                        </div>
+                        <p class="mt-1">{{ $comment->comment }}</p>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <p class="text-center text-xs text-gray-700">No hay comentarios existentes</p>
+        @endforelse
+    </div>
 </div>
