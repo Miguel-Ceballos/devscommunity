@@ -1,5 +1,5 @@
 <div class="md:px-40 md:py-10">
-    <div class="text-gray-700 text-center font-bold uppercase text-2xl mb-10">Edit: {{ $post->title }}</div>
+    <div class="text-gray-700 text-center font-bold uppercase text-xl md:text-2xl mb-10">Edit: {{ $post->title }}</div>
     <form wire:submit.prevent="editPost" class="space-y-4">
         <!-- Name -->
         <div>
@@ -56,9 +56,9 @@
             @endif
         </div>
 
-        <div class="flex flex-row-reverse">
-            <x-primary-button class="">
-                {{ __('POST') }}
+        <div class="flex flex-row-reverse mt-2">
+            <x-primary-button class="w-full">
+                {{ __('Save') }}
             </x-primary-button>
         </div>
     </form>
