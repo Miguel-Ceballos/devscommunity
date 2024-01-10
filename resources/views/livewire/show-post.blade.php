@@ -42,6 +42,9 @@
         </div>
         <p class="text-xl md:text-4xl font-extrabold">{{ $post->title }}</p>
         <p class="text-xl">{{ $post->content }}</p>
+        <div class="">
+            <img src="{{ asset('storage/posts/' . $post->image) }}" alt="Image post: {{ $post->title }}" class="rounded-md">
+        </div>
     </div>
     <div class="flex gap-2 md:p-8 mt-2 border-t border-gray-200">
         <div>

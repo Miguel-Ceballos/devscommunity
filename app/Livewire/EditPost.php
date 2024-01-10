@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class EditPost extends Component
 {
@@ -14,6 +15,8 @@ class EditPost extends Component
     public $content;
     public $image;
     public $new_image;
+
+    use WithFileUploads;
 
 
     public $rules = [
