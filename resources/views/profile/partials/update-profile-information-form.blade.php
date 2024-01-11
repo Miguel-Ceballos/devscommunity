@@ -1,3 +1,7 @@
+@push('styles')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
+
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
@@ -13,26 +17,20 @@
         @csrf
     </form>
 
+    <div class="flex items-center justify-center">
+        <form action="{{ route('profile.image') }}" id="dropzone" method="post" enctype="multipart/form-data" class="dropzone border-dashed border-2 w-72 h-72 rounded-full flex justify-center items-center text-2xl text-gray-700 bg-gray-100 my-4 ">
+            @csrf
+        </form>
+    </div>
+
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="image" :value="__('Profile image')"/>
-            <input wire:model="image"
-                   type="file"
-                   accept="image/*"
-                   class="relative my-1 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
-            />
-            <x-input-error :messages="$errors->get('image')"/>
+        <div class="mb-5">
+            <input type="hidden" id="image" name="image" value="{{ old('image') }}">
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
-
-        {{--        <div class="my-5 w-72">--}}
-        {{--            @if($image)--}}
-        {{--                Image:--}}
-        {{--                <img src="{{ $image->temporaryUrl() }}" class="rounded-lg" alt="">--}}
-        {{--            @endif--}}
-        {{--        </div>--}}
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -85,3 +83,7 @@
         </div>
     </form>
 </section>
+
+@push('scripts')
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+@endpush

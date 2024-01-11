@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Nette\Utils\Image;
 
 class ProfileController extends Controller
 {
@@ -30,10 +31,6 @@ class ProfileController extends Controller
         $request->request->add(['username' => Str::slug($request->username)]);
 
         $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
 
         $request->user()->save();
 

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        @stack('styles')
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -34,5 +34,6 @@
             </main>
         </div>
     @livewireScripts
+    @stack('scripts')
     </body>
 </html>
