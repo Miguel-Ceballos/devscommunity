@@ -14,9 +14,9 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
 
-    public function index(User $user)
+    public function index(User $user): View
     {
-        return \view('profile.index', [
+        return view('profile.index', [
             'user' => $user,
             'posts' => $user->posts
         ]);

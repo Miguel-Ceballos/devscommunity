@@ -22,6 +22,14 @@
                                 <h1 class="text-center text-2xl font-bold text-gray-700">{{$user->name}}</h1>
                                 <p class="text-gray-500">{{ '@' . $user->username }}</p>
                             </div>
+                            <div class="flex gap-6 items-center">
+                                @auth
+                                        <livewire:follow :user="$user"/>
+                                @else
+                                    <p class="text-gray-500">{{ $user->followers->count() }} Followers</p>
+                                    <p class="text-gray-500">15 Following</p>
+                                @endauth
+                            </div>
                         </div>
                     </div>
 
