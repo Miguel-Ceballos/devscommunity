@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Nette\Utils\Image;
 
 class ProfileController extends Controller
 {
+
+    public function index(User $user)
+    {
+        return \view('profile.index', [
+            'user' => $user,
+            'posts' => $user->posts
+        ]);
+    }
+
     /**
      * Display the user's profile form.
      */

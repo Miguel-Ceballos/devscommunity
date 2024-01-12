@@ -33,7 +33,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')" class="border-b border-gray-300 py-4">
+                            <x-dropdown-link :href="route('profile.index', auth()->user()->username)" class="border-b border-gray-300 py-4">
                                 {{ __(Auth::user()->name) }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('posts.index')">
