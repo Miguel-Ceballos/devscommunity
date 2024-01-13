@@ -23,6 +23,7 @@ class ShowPosts extends Component
 
         if ( ! $this->term && auth()->user()->followings->count() !== 0 ) {
             $ids = auth()->user()->followings->pluck('id')->toArray();
+            array_push($ids, auth()->user()->id);
             $posts = Post::whereIn('user_id', $ids)->latest()->get();
         } else if ( ! $this->term && auth()->user()->followings->count() === 0 ) {
             $posts = Post::all();
