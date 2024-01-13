@@ -6,7 +6,11 @@
             @endif
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="md:p-6 text-gray-900">
-                    <livewire:show-posts :posts="$posts" />
+                    @auth
+                        <livewire:show-posts />
+                    @else
+                        <livewire:show-posts :posts="$posts" />
+                    @endauth
                 </div>
             </div>
         </div>

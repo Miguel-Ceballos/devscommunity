@@ -2,15 +2,39 @@
 
 namespace App\Livewire;
 
+use App\Models\Post;
 use Livewire\Component;
 
 class ShowPosts extends Component
 {
 
-    public $posts;
+    public $term;
+//    public $posts;
+
+    protected $listeners = [ 'searchTerm' => 'search' ];
+
+    public function search($term)
+    {
+        $this->term = $term;
+    }
 
     public function render()
     {
-        return view('livewire.show-posts');
+
+        if ( ! $this->term && auth()->user()->followings->count() !== 0 ) {
+            $ids = auth()->user()->followings->pluck('id')->toArray();
+            $posts = Post::whereIn('user_id', $ids)->latest()->get();
+        } else if ( ! $this->term && auth()->user()->followings->count() === 0 ) {
+            $posts = Post::all();
+        } else {
+            $posts = Post::when($this->term, function($query) {
+                $query->where('title', 'LIKE', "%" . $this->term . "%");
+            })->get();
+        }
+
+
+        return view('livewire.show-posts', [
+            'posts' => $posts
+        ]);
     }
 }

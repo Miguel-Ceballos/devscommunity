@@ -51,9 +51,11 @@
         </div>
         <p class="text-xl md:text-4xl font-extrabold">{{ $post->title }}</p>
         <p class="text-md md:text-xl">{{ $post->content }}</p>
-        <div>
-            <img src="{{ asset('storage/posts/' . $post->image) }}" alt="Image post: {{ $post->title }}" class="rounded-md">
-        </div>
+        @if($post->image)
+            <div>
+                <img src="{{ asset('storage/posts/' . $post->image) }}" alt="Image post: {{ $post->title }}" class="rounded-md">
+            </div>
+        @endif
         <div class="flex gap-10 text-md justify-center md:justify-start">
             @auth
                 <livewire:like-post :post="$post"/>

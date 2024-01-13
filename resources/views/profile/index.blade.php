@@ -27,7 +27,7 @@
                                         <livewire:follow :user="$user"/>
                                 @else
                                     <p class="text-gray-500">{{ $user->followers->count() }} Followers</p>
-                                    <p class="text-gray-500">15 Following</p>
+                                    <p class="text-gray-500">{{ $user->followings->count() }} Following</p>
                                 @endauth
                             </div>
                         </div>

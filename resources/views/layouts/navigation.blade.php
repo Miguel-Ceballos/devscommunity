@@ -2,13 +2,14 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex gap-16 max-w-96 items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('posts.index') }}">
                         <x-application-logo class="text-md" />
                     </a>
                 </div>
+                <livewire:search />
             </div>
 
             <!-- Settings Dropdown -->
