@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Notifications\NewLikePost;
 use Livewire\Component;
 
 class Follow extends Component
@@ -29,6 +30,15 @@ class Follow extends Component
             $this->user->followers()->attach(auth()->user()->id);
             $this->followers++;
             $this->isFollower = true;
+
+            //Crea notificación
+            $this->user->notify(new NewLikePost(
+                null,
+                null,
+                auth()->user()->id,
+                auth()->user()->username,
+                "started following you"
+            ));
         }
     }
 

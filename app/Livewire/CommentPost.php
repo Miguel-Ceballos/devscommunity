@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Comment;
+use App\Notifications\NewLikePost;
 use Livewire\Component;
 
 class CommentPost extends Component
@@ -37,6 +38,14 @@ class CommentPost extends Component
             'post_id' => $this->post->id,
             'comment' => $data['comment']
         ]);
+
+        $this->post->user->notify(new NewLikePost(
+            $this->post->id,
+            $this->post->title,
+            auth()->user()->id,
+            auth()->user()->username,
+            "commented on your post"
+        ));
 
 //        $this->dispatch('commentForm', $this->post->comments);
 
